@@ -1,7 +1,7 @@
-const usersOperations = require("../../models/users");
+const { User } = require("../../models");
 
-const addUser = async (request, response, next) => {
-  const result = await usersOperations.addUser(request.body);
+const addUser = async (request, response) => {
+  const result = await User.create(request.body);
   response.status(201).json({
     status: "success",
     code: 201,

@@ -1,9 +1,9 @@
-const usersOperations = require("../../models/users");
+const { User } = require("../../models");
 const { HttpError } = require("../../utils");
 
-const deleteById = async (request, response, next) => {
+const deleteById = async (request, response) => {
   const { id } = request.params;
-  const result = await usersOperations.removeUser(id);
+  const result = await User.findByIdAndRemove(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }

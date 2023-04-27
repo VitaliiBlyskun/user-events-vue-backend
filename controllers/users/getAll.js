@@ -1,14 +1,14 @@
-const usersOperations = require("../../models/users");
+const { User } = require("../../models");
 
-const getAll = async (request, response, next) => {
-    const users = await usersOperations.listUsers();
-    response.json({
-      status: "success",
-      code: 200,
-      data: {
-        result: users,
-      },
-    });
+const getAll = async (request, response) => {
+  const users = await User.find();
+  response.json({
+    status: "success",
+    code: 200,
+    data: {
+      result: users,
+    },
+  });
 };
 
-module.exports = getAll
+module.exports = getAll;

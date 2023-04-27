@@ -1,17 +1,18 @@
-const usersOperations = require("../../models/users");
+const { User } = require("../../models");
 const { HttpError } = require("../../utils");
 
-const getById = async (request, response, next) => {
+const getById = async (request, response) => {
   const { id } = request.params;
-  const result = await usersOperations.getUserById(id);
-  if (!result) {
-    throw HttpError(404, "Not found");
+  const user = await User.findById(id);
+  console.log("result:", user);
+  if (!user) {
+    throw HttpError(404, "User not found");
   }
   response.json({
     status: "success",
     code: 200,
     data: {
-      result,
+      result: user,
     },
   });
 };
