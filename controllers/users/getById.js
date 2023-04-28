@@ -4,7 +4,6 @@ const { HttpError } = require("../../utils");
 const getById = async (request, response) => {
   const { id } = request.params;
   const user = await User.findById(id);
-  console.log("result:", user);
   if (!user) {
     throw HttpError(404, "User not found");
   }

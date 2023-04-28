@@ -4,11 +4,15 @@ const { handleMongooseError } = require('../utils');
 
 const userSchema = new Schema(
   {
-    name: {
+    userName: {
       type: String,
       required: true,
     },
-    surname: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
       type: String,
       required: true,
     },
