@@ -48,6 +48,7 @@ const eventSchema = new Schema(
       type: String,
       match: /^\d{2}-\d{2}-\d{4}$/,
       required: true,
+      unique: true,
     },
     endDate: {
       type: String,
