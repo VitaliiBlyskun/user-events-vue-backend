@@ -3,10 +3,11 @@ const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require('../utils');
 
 const userSchema = new Schema(
-  {
+   {
     userName: {
       type: String,
       required: true,
+      unique: true,
     },
     firstName: {
       type: String,
@@ -19,19 +20,19 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     phone: {
       type: String,
       required: true,
-        },
-    eventsCount: {
-      type: Number,
-      default: 0,
-        },
-    nextDate: {
-      type: String,
-      default: "Nothing"
+      unique: true,
     },
+    events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
   }, { versionKey: false, timestamps: true });
 
 userSchema.post("save", handleMongooseError)

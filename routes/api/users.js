@@ -16,4 +16,8 @@ router.post("/", validateBody(userSchema.addSchema), usersController.addUser);
 
 router.delete("/:id", isValidId, usersController.deleteById);
 
+router.get("/:id/events", isValidId, usersController.getUserEvents);
+
+router.delete("/:userId/events/:eventId", usersController.deleteUserEvent);
+
 module.exports = router;
