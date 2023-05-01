@@ -22,9 +22,9 @@ const getAll = async (request, response) => {
   const { page = 1, limit = 50 } = request.query;
   const skip = (page - 1) * limit;
 
-  const users = await User.find({}, "-createdAt -updatedAt", {skip, limit}).populate('events');
+  const result = await User.find({}, "-createdAt -updatedAt", {skip, limit}).populate('events');
 
-  const usersWithEventsCount = users.map(user => ({
+  const usersWithEventsCount = result.map(user => ({
     _id: user._id,
     userName: user.userName,
     firstName: user.firstName,
@@ -38,7 +38,7 @@ const getAll = async (request, response) => {
     status: "success",
     code: 200,
     data: {
-      users: usersWithEventsCount,
+      result: usersWithEventsCount,
     },
   });
 };
