@@ -6,7 +6,7 @@ const addUserEvent = async (request, response) => {
   const userId = request.params.userId;
 
       if (typeof userId !== 'string') {
-    return response.status(400).json({ message: 'userId must be a string' });
+        throw HttpError(404, 'userId must be a string')
   }
 
     const user = await User.findById(userId);
