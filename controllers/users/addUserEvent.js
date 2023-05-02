@@ -1,13 +1,9 @@
 const { User, Event } = require("../../models");
 const { HttpError } = require("../../utils");
 
-const addUserEvent = async (request, response) => {
-  const { title, description, startDate, endDate } = request.body;
-  const userId = request.params.userId;
-
-      if (typeof userId !== 'string') {
-        throw HttpError(404, 'userId must be a string')
-  }
+const addUserEvent = async (req, res) => {
+  const { title, description, startDate, endDate } = req.body;
+  const userId = req.params.userId;
 
     const user = await User.findById(userId);
     if (!user) {
@@ -27,7 +23,7 @@ const addUserEvent = async (request, response) => {
     user.events.push(result._id);
     await user.save();
 
-    response.status(201).json({
+    res.status(201).json({
       status: "success",
       code: 201,
       data: {
