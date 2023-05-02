@@ -27,7 +27,7 @@ const addUserEvent = async (req, res) => {
       status: "success",
       code: 201,
       data: {
-        event: result,
+        events: result,
       },
     });
 
