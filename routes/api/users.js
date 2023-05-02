@@ -20,4 +20,6 @@ router.get("/:id/events", isValidId, usersController.getUserEvents);
 
 router.delete("/:userId/events/:eventId", usersController.deleteUserEvent);
 
+router.post("/:userId/events", usersController.addUserEvent);
+
 module.exports = router;
